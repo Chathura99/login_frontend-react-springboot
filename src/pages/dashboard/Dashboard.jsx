@@ -7,13 +7,13 @@ import Topbar from "../../components/topbar/Topbar";
 
 const Dashboard = (props) => {
   const [data, setData] = useState({});
-  const [otherdata, setOther] = useState({});
+  const [otherdata, setOtherData] = useState({});
 
   React.useEffect(() => {
     fetchUserData()
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        setOtherData(response.data.roles[0]);
       })
       .catch((e) => {
         localStorage.clear();
