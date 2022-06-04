@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
-import {
-  SidebarDataAdmin,
-  SidebarDataMember,
-  SidebarDataTeacher,
-} from "../../data/Data";
 
 const Sidebar = (props) => {
   const [selected, setSelected] = useState(0);
@@ -27,7 +22,6 @@ const Sidebar = (props) => {
                           ? "sidebarListItem active"
                           : "sidebarListItem"
                       }
-                      
                       onClick={() => {
                         setSelected(index);
                       }}

@@ -14,7 +14,6 @@ const Dashboard = (props) => {
       .then((response) => {
         setData(response.data);
         console.log(response.data);
-        setOther(response.data.roles[0]);
       })
       .catch((e) => {
         localStorage.clear();
@@ -28,6 +27,8 @@ const Dashboard = (props) => {
       return <Sidebar role={"Admin"} data={SidebarDataAdmin} />;
     } else if (role === "MEMBER") {
       return <Sidebar role={"Member"} data={SidebarDataMember} />;
+    }else{
+      return <Sidebar role={"Other"} data={SidebarDataMember} />;
     }
   };
 
