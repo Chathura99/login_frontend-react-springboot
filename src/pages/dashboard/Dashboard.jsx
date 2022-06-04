@@ -12,6 +12,7 @@ const Dashboard = (props) => {
   React.useEffect(() => {
     fetchUserData()
       .then((response) => {
+        console.log(response.data)
         setData(response.data);
         setOtherData(response.data.roles[0]);
       })

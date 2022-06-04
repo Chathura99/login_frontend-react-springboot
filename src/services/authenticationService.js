@@ -8,11 +8,12 @@ export const userLogin = (authRequest) => {
   return axios({
     method: "POST",
     url: `${process.env.hostUrl || "http://localhost:8080"}/api/v1/auth/login`,
+    //authRequest->userName and password
     data: authRequest,
   });
 };
 
-export const fetchUserData = (authRequest) => {
+export const fetchUserData = () => {
   return axios({
     method: "GET",
     url: `${process.env.hostUrl || "http://localhost:8080"}/api/v1/auth/userinfo`,
@@ -21,3 +22,6 @@ export const fetchUserData = (authRequest) => {
     },
   });
 };
+
+
+//service file for connect with back end

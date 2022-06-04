@@ -14,14 +14,13 @@ const LoginPage = ({ loading, error, ...props }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.authenticate();
-
+    //method called userLogin(userName,password) in authentication service
     userLogin(values)
       .then((response) => {
-        console.log("response->", response);
+        // console.log("response->", response);
         if (response.status === 200) {
-          console.log("logging success");
+          // console.log("logging success");
           props.setUser(response.data);
-
           window.location.href = "/dashboard";
         } else {
           props.loginFailure("1.Something Wrong!Please Try Again");
@@ -46,25 +45,23 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   const handleChange = (e) => {
     e.persist();
+    // console.log(e.target.name+"-"+e.target.value)
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,
     }));
   };
 
-  // console.log("Loading ", loading);
-
   return (
     <div className="login-page">
       <section className="h-100">
-        {/* <div className="container h-100"> */}
         <div>
           <div className="row justify-content-md-center h-100">
             <div className="card-wrapper">
               <div className="card fat">
                 <div className="card-body">
                   <h4 className="card-title">Login</h4>
-{/* onsubmit then, call to {handleSubmit}*/}
+                  {/* onsubmit then, call to {handleSubmit}*/}
                   <form
                     className="my-login-validation"
                     onSubmit={handleSubmit}
@@ -134,12 +131,6 @@ const LoginPage = ({ loading, error, ...props }) => {
                             aria-hidden="true"
                           />
                         )}
-                        {/* <ClipLoader
-                                        //css={override}
-                                        size={20}
-                                        color={"#123abc"}
-                                        loading={loading}
-                                        /> */}
                       </button>
                     </div>
                   </form>
@@ -169,7 +160,9 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authenticate: () => dispatch(authenticate()),
+    //user details setted in above
     setUser: (data) => dispatch(authSuccess(data)),
+    //error messages setted in above
     loginFailure: (message) => dispatch(authFailure(message)),
   };
 };
