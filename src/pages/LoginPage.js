@@ -6,6 +6,7 @@ import { userLogin } from "../services/authenticationService";
 import { Alert, Spinner } from "react-bootstrap";
 
 const LoginPage = ({ loading, error, ...props }) => {
+  
   const [values, setValues] = useState({
     userName: "",
     password: "",
@@ -14,14 +15,15 @@ const LoginPage = ({ loading, error, ...props }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.authenticate();
-    //method called userLogin(userName,password) in authentication service
+    // console.log(props);
+    //method called userLogin(userName,password) in authentication service as a authRequest
     userLogin(values)
       .then((response) => {
         // console.log("response->", response);
         if (response.status === 200) {
           // console.log("logging success");
           props.setUser(response.data);
-          window.location.href = "/dashboard";
+          window.location.href = "/dashboard";        
         } else {
           props.loginFailure("1.Something Wrong!Please Try Again");
         }
@@ -166,5 +168,5 @@ const mapDispatchToProps = (dispatch) => {
     loginFailure: (message) => dispatch(authFailure(message)),
   };
 };
-
+//get data from store
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
